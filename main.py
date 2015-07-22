@@ -6,6 +6,8 @@ from pygame.locals import *
 import game
 from menu import *
 from config import *
+import sys
+
 
 menu = None
 
@@ -30,9 +32,15 @@ def start_custom_game():
     game.main(surface)
     reinit(menu)
 
+def new_menu( options, surface ):
+  menu = Menu()
+  menu.init(options, surface)
+  return(menu)
+
 def start_premade_game():
-    menu = Menu()
-    menu.init(['Blinker', 'Beacon','Toad'], surface)
+    sub_options = ['Blinker', 'Beacon','Toad']
+    menu = new_menu( sub_options, surface )
+
     reinit(menu)
 
     while 1:
@@ -47,6 +55,7 @@ def start_premade_game():
                 if event.key == K_RETURN:
                     pos = menu.get_position()
                     game.main(surface, menu.lista[pos])
+                    reinit(menu)
 
                 if event.key == K_ESCAPE:
                     return
@@ -58,9 +67,11 @@ def start_premade_game():
 
         pygame.time.wait(8)
 
+
 if __name__ == "__main__":
-    menu = Menu()
-    menu.init(['Start custom game','Choose premade constructions','Quit'], surface)
+    main_options = ['Start custom game','Choose premade constructions','Quit']
+    menu = new_menu( main_options, surface )
+
     reinit(menu)
 
     while 1:
@@ -77,7 +88,10 @@ if __name__ == "__main__":
                     if menu.get_position() == 0:
                         start_custom_game()
                     if menu.get_position() == 1:
-                        start_premade_game()                         
+                        start_premade_game()
+                        menu = new_menu( main_options, surface )
+                        reinit(menu)
+
                 if event.key == K_ESCAPE:
                     pygame.display.quit()
                     sys.exit()
