@@ -73,6 +73,7 @@ def start_premade_game():
 if __name__ == "__main__":
     main_options = ['Start custom game','Choose premade constructions','Quit']
     menu = new_menu( main_options, surface )
+    pygame.mouse.set_visible(False)
 
     reinit(menu)
 
