@@ -70,7 +70,7 @@ def main(screen):
                     move_cursor(grid, -1, 0)
                 if event.key == K_RIGHT:
                     move_cursor(grid, 1, 0)
-                if event.key == K_SPACE:
+                if event.key in [K_1, K_2, K_3, K_4, K_5, K_6, K_7, K_8, K_9]:
                     toggle_cell(grid)
                 if event.key == K_RETURN:
                     grid.cells[CURSOR[0]][CURSOR[1]].uncursor()
