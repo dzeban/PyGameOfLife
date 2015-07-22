@@ -211,8 +211,7 @@ def launch_with_grid(screen, grid):
 def launch(screen, pattern=None):
     grid = Grid(screen, SCREEN_CELLS)
     initialize(grid, pattern)
-    launch_with_grid(grid)
-
+    launch_with_grid(screen, grid)
 
 # run the main function only if this module is executed as the main script
 # (if you import this as a module then nothing is executed)
