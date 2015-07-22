@@ -40,7 +40,8 @@ def new_menu( options, surface ):
   return(menu)
 
 def start_premade_game():
-    sub_options = ['Blinker', 'Beacon','Toad','Gosper_glider_gun']
+    #sub_options = ['Pentomino', 'Gosper_glider_gun', 'Blinker', 'Beacon','Toad']
+    sub_options = ['Pentomino', 'Blinker', 'Beacon','Toad']
     menu = new_menu( sub_options, surface )
 
     reinit(menu)

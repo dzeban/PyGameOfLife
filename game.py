@@ -161,6 +161,12 @@ pattern_beacon = [
         [0, 0, 1, 1]
         ]
 
+pattern_r_pentomino = [
+        [0, 0, 1, 1, 0],
+        [0, 1, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        ]
+
 pattern_glider = [ [ 0 for i in xrange(37) ] for i in xrange(10) ]
 pattern_glider[1][25] = 1
 
@@ -221,6 +227,7 @@ def initialize(grid, pattern_name):
                     cells[i][j].alive()
         return
 
+    print(pattern_name)
     # Draw specific pattern
     if pattern_name is 'Blinker':
         pattern = pattern_blinker
@@ -228,9 +235,10 @@ def initialize(grid, pattern_name):
         pattern = pattern_beacon
     elif pattern_name is 'Toad':
         pattern = pattern_toad
-    elif pattern_name is 'Gosper_glider_gun':
-        print("OOOOOK")
-        pattern = pattern_glider
+    elif pattern_name is "Pentomino":
+        pattern = pattern_r_pentomino
+    #elif pattern_name is 'Gosper_glider_gun':
+        #pattern = pattern_glider
 
     for j, row in enumerate(pattern):
         for i, val in enumerate(row):
@@ -261,7 +269,7 @@ def launch_with_grid(grid):
 def launch(screen, pattern=None):
     grid = Grid(screen, SCREEN_CELLS)
     initialize(grid, pattern)
-    launch_with_grid(screen, grid)
+    launch_with_grid(grid)
 
 # run the main function only if this module is executed as the main script
 # (if you import this as a module then nothing is executed)
