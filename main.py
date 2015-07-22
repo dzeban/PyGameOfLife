@@ -5,12 +5,7 @@ from pygame.locals import *
 
 import game
 from menu import *
-
-#WIDTH = 320
-#HEIGHT = 240
-WIDTH = 800
-HEIGHT = 600
-SCREEN_SIZE = (WIDTH, HEIGHT)
+from config import *
 
 menu = None
 
@@ -32,7 +27,7 @@ def reinit(menu):
     pygame.display.update()
 
 def start_custom_game():
-    game.main()
+    game.main(surface)
     reinit(menu)
 
 def start_premade_game():
@@ -51,7 +46,7 @@ def start_premade_game():
 
                 if event.key == K_RETURN:
                     pos = menu.get_position()
-                    game.main(menu.lista[pos])
+                    game.main(surface, menu.lista[pos])
 
                 if event.key == K_ESCAPE:
                     return

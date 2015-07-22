@@ -6,18 +6,14 @@ from __future__ import print_function
 import pygame
 from pygame.locals import *
 
+from config import *
+
 import sys
 import random
 
 #from IPython.core import ultratb
 #sys.excepthook = ultratb.FormattedTB(mode='Verbose',
              #color_scheme='Linux', call_pdb=1)
-
-#WIDTH = 320
-#HEIGHT = 240
-WIDTH = 800
-HEIGHT = 600
-SCREEN_SIZE = (WIDTH, HEIGHT)
 
 CELL_SIZE = 8
 SCREEN_CELLS = (WIDTH/CELL_SIZE, HEIGHT/CELL_SIZE)
@@ -27,8 +23,8 @@ pygame.init()
 pygame.display.set_caption("Game of Life")
 screen = pygame.display.set_mode(SCREEN_SIZE)
 
-ALIVE_IMG = pygame.image.load("data/alive.png").convert()
-DEAD_IMG = pygame.image.load("data/dead.png").convert()
+ALIVE_IMG = pygame.image.load(ALIVE_IMG_PATH).convert()
+DEAD_IMG = pygame.image.load(DEAD_IMG_PATH).convert()
  
 class Cell(pygame.Rect):
     DEAD = 0
@@ -165,7 +161,7 @@ def initialize(grid, pattern_name):
                 cells[x + i][y + j].alive()
 
 # define a main function
-def main(pattern=None):
+def main(screen, pattern=None):
 
     # define a variable to control the main loop
     running = True
@@ -187,8 +183,7 @@ def main(pattern=None):
 
         grid.update()
         pygame.display.update()
-        pygame.time.delay(30)
-
+        pygame.time.delay(DELAY)
 
 # run the main function only if this module is executed as the main script
 # (if you import this as a module then nothing is executed)
