@@ -25,12 +25,16 @@ screen = pygame.display.set_mode(SCREEN_SIZE)
 
 ALIVE_IMG = pygame.image.load(ALIVE_IMG_PATH).convert()
 DEAD_IMG = pygame.image.load(DEAD_IMG_PATH).convert()
+CURSOR_DEAD_IMG = pygame.image.load(CURSOR_DEAD_IMG_PATH).convert()
+CURSOR_ALIVE_IMG = pygame.image.load(CURSOR_ALIVE_IMG_PATH).convert()
+
  
 class Cell(pygame.Rect):
     DEAD = 0
     ALIVE = 1
     state = DEAD
     next_state = DEAD
+    is_cursor = False
 
     def __init__(self, x, y):
         self.state = self.DEAD
@@ -42,12 +46,32 @@ class Cell(pygame.Rect):
     # Make cell alive
     def alive(self):
         self.next_state = self.ALIVE
-        self.img = ALIVE_IMG
+        if self.is_cursor:
+            self.img = CURSOR_ALIVE_IMG
+        else:
+            self.img = ALIVE_IMG
 
     # Make cell dead
     def dead(self):
         self.next_state = self.DEAD
-        self.img = DEAD_IMG
+        if self.is_cursor:
+            self.img = CURSOR_DEAD_IMG
+        else:
+            self.img = DEAD_IMG
+
+    def cursor(self):
+        self.is_cursor = True
+        if self.state is self.ALIVE:
+            self.img = CURSOR_ALIVE_IMG
+        else:
+            self.img = CURSOR_DEAD_IMG
+
+    def uncursor(self):
+        self.is_cursor = False
+        if self.state is self.ALIVE:
+            self.img = ALIVE_IMG
+        else:
+            self.img = DEAD_IMG
     
 class Grid:
     def __init__(self, screen, dimensions):
@@ -108,6 +132,9 @@ class Grid:
                 neighbors = self.get_neighbors(i, j)
                 self.update_cell(self.cells[i][j], neighbors)
 
+        self.draw()
+
+    def draw(self):
         for j in xrange(self.height):
             for i in xrange(self.width):
                 self.cells[i][j].state = self.cells[i][j].next_state
@@ -160,14 +187,9 @@ def initialize(grid, pattern_name):
             if val == 1:
                 cells[x + i][y + j].alive()
 
-# define a main function
-def main(screen, pattern=None):
-
+def launch_with_grid(screen, grid):
     # define a variable to control the main loop
     running = True
-
-    grid = Grid(screen, SCREEN_CELLS)
-    initialize(grid, pattern)
 
     # main loop
     while running:
@@ -185,9 +207,16 @@ def main(screen, pattern=None):
         pygame.display.update()
         pygame.time.delay(DELAY)
 
+# define a main function
+def launch(screen, pattern=None):
+    grid = Grid(screen, SCREEN_CELLS)
+    initialize(grid, pattern)
+    launch_with_grid(grid)
+
+
 # run the main function only if this module is executed as the main script
 # (if you import this as a module then nothing is executed)
 if __name__=="__main__":
     # call the main function
-    main()
+    launch(screen)
 

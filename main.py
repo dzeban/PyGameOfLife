@@ -4,6 +4,8 @@ import pygame
 from pygame.locals import *
 
 import game
+import editor
+
 from menu import *
 from config import *
 import sys
@@ -29,7 +31,7 @@ def reinit(menu):
     pygame.display.update()
 
 def start_custom_game():
-    game.main(surface)
+    editor.main(surface)
     reinit(menu)
 
 def new_menu( options, surface ):
@@ -54,7 +56,7 @@ def start_premade_game():
 
                 if event.key == K_RETURN:
                     pos = menu.get_position()
-                    game.main(surface, menu.lista[pos])
+                    game.launch(surface, menu.lista[pos])
                     reinit(menu)
 
                 if event.key == K_ESCAPE:
