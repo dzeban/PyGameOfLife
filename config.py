@@ -4,7 +4,8 @@ HEIGHT = 240
 SCREEN_SIZE = (WIDTH, HEIGHT)
 
 # Update delay in ms
-DELAY = 100
+# On ETN it's already pretty slow
+DELAY = 0
 
 ALIVE_IMG_PATH="data/alive.png"
 DEAD_IMG_PATH="data/dead.png"
