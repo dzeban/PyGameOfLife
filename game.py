@@ -121,38 +121,48 @@ class Grid:
                 cell = self.cells[i][j]
                 self.screen.blit(cell.img, cell.location)
 
-def initialize(grid, pattern):
+
+pattern_toad = [
+        [0, 1, 1, 1],
+        [1, 1, 1, 0]
+        ]
+
+pattern_blinker = [
+        [1, 1, 1]
+        ]
+
+pattern_beacon = [
+        [1, 1, 0, 0],
+        [1, 1, 0, 0],
+        [0, 0, 1, 1],
+        [0, 0, 1, 1]
+        ]
+
+def initialize(grid, pattern_name):
     cells = grid.cells
-    i = SCREEN_CELLS[0] / 2
-    j = SCREEN_CELLS[1] / 2
-    print(i, j, len(cells))
-    if pattern is 'Blinker':
-        cells[i][j - 1].alive()
-        cells[i][j].alive()
-        cells[i][j + 1].alive()
-    elif pattern is 'Beacon':
-        cells[i - 2][j - 2].alive()
-        cells[i - 1][j - 2].alive()
-        cells[i - 2][j - 1].alive()
-        cells[i - 1][j - 1].alive()
+    x = SCREEN_CELLS[0] / 2
+    y = SCREEN_CELLS[1] / 2
 
-        cells[i][j].alive()
-        cells[i + 1][j].alive()
-        cells[i][j + 1].alive()
-        cells[i + 1][j + 1].alive()
-
-    elif pattern is 'Toad':
-        cells[i - 2][j + 1].alive()
-        cells[i - 1][j + 1].alive()
-        cells[i][j + 1].alive()
-        cells[i - 1][j].alive()
-        cells[i][j].alive()
-        cells[i + 1][j].alive()
-    else:
+    # If pattern name is not set - fill with random
+    if pattern_name is None:
         for j in xrange(grid.height):
             for i in xrange(grid.width):
                 if random.randint(0, 1) == 1:
                     cells[i][j].alive()
+        return
+
+    # Draw specific pattern
+    if pattern_name is 'Blinker':
+        pattern = pattern_blinker
+    elif pattern_name is 'Beacon':
+        pattern = pattern_beacon
+    elif pattern_name is 'Toad':
+        pattern = pattern_toad
+
+    for j, row in enumerate(pattern):
+        for i, val in enumerate(row):
+            if val == 1:
+                cells[x + i][y + j].alive()
 
 # define a main function
 def main(pattern=None):
