@@ -40,7 +40,7 @@ def new_menu( options, surface ):
   return(menu)
 
 def start_premade_game():
-    sub_options = ['Blinker', 'Beacon','Toad']
+    sub_options = ['Blinker', 'Beacon','Toad','Gosper_glider_gun']
     menu = new_menu( sub_options, surface )
 
     reinit(menu)
@@ -56,6 +56,7 @@ def start_premade_game():
 
                 if event.key == K_RETURN:
                     pos = menu.get_position()
+                    print(menu.lista[pos])
                     game.launch(surface, menu.lista[pos])
                     reinit(menu)
 

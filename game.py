@@ -161,6 +161,53 @@ pattern_beacon = [
         [0, 0, 1, 1]
         ]
 
+pattern_glider = [ [ 0 for i in xrange(37) ] for i in xrange(10) ]
+pattern_glider[1][25] = 1
+
+pattern_glider[2][23] = 1
+pattern_glider[2][25] = 1
+
+pattern_glider[3][22] = 1
+pattern_glider[3][21] = 1
+pattern_glider[3][36] = 1
+pattern_glider[3][35] = 1
+pattern_glider[3][13] = 1
+pattern_glider[3][14] = 1
+
+
+pattern_glider[4][22] = 1
+pattern_glider[4][21] = 1
+pattern_glider[4][36] = 1
+pattern_glider[4][35] = 1
+pattern_glider[4][12] = 1
+pattern_glider[4][16] = 1
+
+pattern_glider[5][22] = 1
+pattern_glider[5][21] = 1
+pattern_glider[5][1] = 1
+pattern_glider[5][2] = 1
+pattern_glider[5][11] = 1
+pattern_glider[5][17] = 1
+
+pattern_glider[6][23] = 1
+pattern_glider[6][25] = 1
+pattern_glider[6][1] = 1
+pattern_glider[6][2] = 1
+pattern_glider[6][11] = 1
+pattern_glider[6][17] = 1
+pattern_glider[6][15] = 1
+pattern_glider[6][18] = 1
+
+pattern_glider[7][25] = 1
+pattern_glider[7][11] = 1
+pattern_glider[7][17] = 1
+
+pattern_glider[8][12] = 1
+pattern_glider[8][16] = 1
+
+pattern_glider[9][13] = 1
+pattern_glider[9][14] = 1
+
 def initialize(grid, pattern_name):
     cells = grid.cells
     x = SCREEN_CELLS[0] / 2
@@ -181,13 +228,16 @@ def initialize(grid, pattern_name):
         pattern = pattern_beacon
     elif pattern_name is 'Toad':
         pattern = pattern_toad
+    elif pattern_name is 'Gosper_glider_gun':
+        print("OOOOOK")
+        pattern = pattern_glider
 
     for j, row in enumerate(pattern):
         for i, val in enumerate(row):
             if val == 1:
                 cells[x + i][y + j].alive()
 
-def launch_with_grid(screen, grid):
+def launch_with_grid(grid):
     # define a variable to control the main loop
     running = True
 
