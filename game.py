@@ -227,7 +227,6 @@ def initialize(grid, pattern_name):
                     cells[i][j].alive()
         return
 
-    print(pattern_name)
     # Draw specific pattern
     if pattern_name is 'Blinker':
         pattern = pattern_blinker
@@ -259,7 +258,6 @@ def launch_with_grid(grid):
                 running = False
             if event.key == K_ESCAPE:
                 return
-            print(event)
 
         grid.update()
         pygame.display.update()

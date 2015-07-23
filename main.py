@@ -57,7 +57,6 @@ def start_premade_game():
 
                 if event.key == K_RETURN:
                     pos = menu.get_position()
-                    print(menu.lista[pos])
                     game.launch(surface, menu.lista[pos])
                     reinit(menu)
 

@@ -15,8 +15,6 @@ def move_cursor(grid, dx, dy):
     x = CURSOR[0]
     y = CURSOR[1]
 
-    print(x, y, dx, dy)
-
     grid.cells[x][y].uncursor()
 
     new_x = x + dx
