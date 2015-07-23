@@ -74,9 +74,7 @@ def main(screen):
                     toggle_cell(grid)
                 if event.key == K_RETURN:
                     grid.cells[CURSOR[0]][CURSOR[1]].uncursor()
-                    launch_with_grid(screen, grid)
-
-            print(event)
+                    launch_with_grid(grid)
 
         grid.draw()
         pygame.display.update()
