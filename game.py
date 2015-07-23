@@ -6,6 +6,7 @@ from __future__ import print_function
 import pygame
 from pygame.locals import *
 
+import pattern as Pattern
 from config import *
 
 import sys
@@ -145,75 +146,6 @@ class Grid:
                 self.screen.blit(cell.img, cell.location)
 
 
-pattern_toad = [
-        [0, 1, 1, 1],
-        [1, 1, 1, 0]
-        ]
-
-pattern_blinker = [
-        [1, 1, 1]
-        ]
-
-pattern_beacon = [
-        [1, 1, 0, 0],
-        [1, 1, 0, 0],
-        [0, 0, 1, 1],
-        [0, 0, 1, 1]
-        ]
-
-pattern_r_pentomino = [
-        [0, 0, 1, 1, 0],
-        [0, 1, 1, 0, 0],
-        [0, 0, 1, 0, 0],
-        ]
-
-pattern_glider = [ [ 0 for i in xrange(37) ] for i in xrange(10) ]
-pattern_glider[1][25] = 1
-
-pattern_glider[2][23] = 1
-pattern_glider[2][25] = 1
-
-pattern_glider[3][22] = 1
-pattern_glider[3][21] = 1
-pattern_glider[3][36] = 1
-pattern_glider[3][35] = 1
-pattern_glider[3][13] = 1
-pattern_glider[3][14] = 1
-
-
-pattern_glider[4][22] = 1
-pattern_glider[4][21] = 1
-pattern_glider[4][36] = 1
-pattern_glider[4][35] = 1
-pattern_glider[4][12] = 1
-pattern_glider[4][16] = 1
-
-pattern_glider[5][22] = 1
-pattern_glider[5][21] = 1
-pattern_glider[5][1] = 1
-pattern_glider[5][2] = 1
-pattern_glider[5][11] = 1
-pattern_glider[5][17] = 1
-
-pattern_glider[6][23] = 1
-pattern_glider[6][25] = 1
-pattern_glider[6][1] = 1
-pattern_glider[6][2] = 1
-pattern_glider[6][11] = 1
-pattern_glider[6][17] = 1
-pattern_glider[6][15] = 1
-pattern_glider[6][18] = 1
-
-pattern_glider[7][25] = 1
-pattern_glider[7][11] = 1
-pattern_glider[7][17] = 1
-
-pattern_glider[8][12] = 1
-pattern_glider[8][16] = 1
-
-pattern_glider[9][13] = 1
-pattern_glider[9][14] = 1
-
 def initialize(grid, pattern_name):
     cells = grid.cells
     x = SCREEN_CELLS[0] / 2
@@ -229,15 +161,15 @@ def initialize(grid, pattern_name):
 
     # Draw specific pattern
     if pattern_name is 'Blinker':
-        pattern = pattern_blinker
+        pattern = Pattern.blinker
     elif pattern_name is 'Beacon':
-        pattern = pattern_beacon
+        pattern = Pattern.beacon
     elif pattern_name is 'Toad':
-        pattern = pattern_toad
+        pattern = Pattern.toad
     elif pattern_name is "Pentomino":
-        pattern = pattern_r_pentomino
+        pattern = Pattern.pentomino
     #elif pattern_name is 'Gosper_glider_gun':
-        #pattern = pattern_glider
+        #pattern = Pattern.glider_gun
 
     for j, row in enumerate(pattern):
         for i, val in enumerate(row):
