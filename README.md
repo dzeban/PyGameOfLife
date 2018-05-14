@@ -1,6 +1,9 @@
 Game of Life for ETN device
 ===========================
 
+Description
+-----------
+
 Implementation of John Conway's "Game of Life". 
 
 The Game of Life is a cellular automaton devised by the British mathematician
@@ -33,19 +36,24 @@ this happens is sometimes called a tick (in other words, each generation is a
 pure function of the preceding one). The rules continue to be applied
 repeatedly to create further generations.
 
-Prerequisites:
+Prerequisites
+-------------
 
 * python 2
 * pygame and its dependencies
 
-To launch a game just issue:
+To install dependencies, use [pipenv](https://docs.pipenv.org/):
 
-	$ python2 main.py
+    $ pipenv install pygame
 
-To launch a game without X server just issue:
+To launch a game just:
+
+    $ pipenv run main.py
+
+To launch a game without X server issue:
 
 	$ export SDL_VIDEODRIVER=directfb
-	$ python2 main.py
+	$ pipenv run main.py
 
 Features:
 
