@@ -34,10 +34,8 @@ def start_custom_game():
     editor.main(surface)
     reinit(menu)
 
-def new_menu( options, surface ):
-  menu = Menu()
-  menu.init(options, surface)
-  return(menu)
+def new_menu(options, surface):
+  return Menu(options, surface)
 
 def start_premade_game():
     #sub_options = ['Pentomino', 'Gosper_glider_gun', 'Blinker', 'Beacon','Toad']
