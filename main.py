@@ -17,7 +17,7 @@ pygame.init()
 pygame.key.set_repeat(199,69) #(delay,interval)
 
 surface = pygame.display.set_mode(SCREEN_SIZE)
-surface.fill((51,51,51))
+surface.fill((51, 51, 51))
 
 if not pygame.display.get_init():
     pygame.display.init()
@@ -26,7 +26,7 @@ if not pygame.font.get_init():
     pygame.font.init()
 
 def reinit(menu):
-    surface.fill((51,51,51))
+    surface.fill((51, 51, 51))
     menu.draw()
     pygame.display.update()
 
@@ -42,7 +42,7 @@ def new_menu( options, surface ):
 def start_premade_game():
     #sub_options = ['Pentomino', 'Gosper_glider_gun', 'Blinker', 'Beacon','Toad']
     sub_options = ['Pentomino', 'Blinker', 'Beacon','Toad']
-    menu = new_menu( sub_options, surface )
+    menu = new_menu(sub_options, surface )
 
     reinit(menu)
 
@@ -57,7 +57,7 @@ def start_premade_game():
 
                 if event.key == K_RETURN:
                     pos = menu.get_position()
-                    game.launch(surface, menu.lista[pos])
+                    game.launch(surface, menu.items[pos])
                     reinit(menu)
 
                 if event.key == K_ESCAPE:
@@ -72,8 +72,8 @@ def start_premade_game():
 
 
 if __name__ == "__main__":
-    main_options = ['Start custom game','Choose premade constructions','Quit']
-    menu = new_menu( main_options, surface )
+    main_options = ['Start custom game', 'Choose premade constructions', 'Quit']
+    menu = new_menu(main_options, surface)
     pygame.mouse.set_visible(False)
 
     reinit(menu)
